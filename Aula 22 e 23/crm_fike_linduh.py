@@ -96,26 +96,57 @@ def excluir_cliente() :
                   print("\nCPF não cadastrado!")      
 
       
-def calcular_faturamento():
-      pass
+def calcular_faturamento_cliente():
+
+      while True:
+
+            cpf = input("\nDigite o CPF do cliente a calcular o faturamento (0 para voltar): ")
+
+            if cpf in clientes:
+                  print(f"\nO faturamento de {clientes[cpf]['nome']} é R$ {sum(clientes[cpf]['compras']):.2f}.")
+
+            elif cpf == '0':
+                  break
+
+            else:
+                  print("\nCPF não cadastrado!")          
       
 def fazer_compra():
-      pass
-      
-def verificar_status():
-      pass
 
+      while True:
+
+            cpf = input("\nDigite o CPF do cliente a fazer compra (0 para voltar): ")
+
+            if cpf in clientes:
+                  print(f"\nNome: {clientes[cpf]['nome']} | Compras: R$ {sum(clientes[cpf]['compras']):.2f}")
+
+                  valor_compra = float(input("\nDigite o novo valor da compra do cliente: "))
+                  clientes[cpf]['compras'].append(valor_compra)
+                  print("\nValor da compra atualizado!")
+                  atualizar_categoria_cliente(cpf)
+                  print(f"\nNome: {clientes[cpf]['nome']} | Compras: R$ {sum(clientes[cpf]['compras']):.2f}")
+
+            elif cpf == '0':
+                  break
+
+            else:
+                  print("\nCPF não cadastrado!")          
+      
+def atualizar_categoria_cliente(cpf):
+
+      if sum(clientes[cpf]['compras']) >= 100:
+            clientes[cpf]['categoria'] = "Vip"
 
 def exibir_menu():
       print("""\n====== MENU ======\n
 O que deseja fazer?\n
 1. Listar
 2. Cadastrar
-3. Atualizar
-4. Excluir
-5. Calcular faturamento
-6. Fazer compra
-7. Verificar status""")
+3. Buscar
+4. Atualizar
+5. Excluir
+6. Calcular faturamento
+7. Fazer compra""")
         
       opcao = (input("\nEscolha a opção: "))
 
@@ -125,20 +156,17 @@ O que deseja fazer?\n
       elif opcao == '2':
             cadastrar_cliente()
 
-      elif opcao == '3': 
+      elif opcao == '4': 
             atualizar_cliente()
 
-      elif opcao == '4':
+      elif opcao == '5':
             excluir_cliente() 
 
-      elif opcao == '5':
-            calcular_faturamento() 
-
       elif opcao == '6':
-            fazer_compra() 
+            calcular_faturamento_cliente() 
 
       elif opcao == '7':
-            verificar_status() 
+            fazer_compra() 
 
       else:
             print("Opção inválida!") 
