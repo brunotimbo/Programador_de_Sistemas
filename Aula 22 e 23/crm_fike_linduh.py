@@ -156,6 +156,9 @@ O que deseja fazer?\n
       elif opcao == '2':
             cadastrar_cliente()
 
+      elif opcao == '3':
+            buscar_cliente()            
+
       elif opcao == '4': 
             atualizar_cliente()
 
