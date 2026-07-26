@@ -6,13 +6,27 @@ clientes = {
     }
 
 def listar_clientes() :
-      if not clientes:
-            print("Nenhum cliente cadastrado ainda.")
 
-      for cpf, dados in clientes.items():
-            print(f"\nCPF: {cpf} | Nome: {dados['nome']} | Idade: {dados['idade']} | Compras: R$ {sum(dados['compras']):.2f} | Categoria: {dados['categoria']}")
+      while True:
+
+            print("\n===== LISTA DE CLIENTES =====\n")
+
+            if not clientes:
+                  print("Nenhum cliente cadastrado ainda.")
+
+            else:
+                  for cpf, dados in clientes.items():
+                        print(f"CPF: {cpf} | Nome: {dados['nome']} | Idade: {dados['idade']} | Compras: R$ {sum(dados['compras']):.2f} | Categoria: {dados['categoria']}")
+
+            opcao = input("\nDigite (0 Retornar) ou (1 Atualizar): ")
+
+            if opcao == '0':
+                  break
 
 def cadastrar_cliente():
+
+      print("\n===== CADASTRAR CLIENTE =====\n")
+
       cpf = input("Digite o CPF a ser cadastrado: ")
       novo_cliente = {}
       novo_cliente["nome"] = input("Digite o nome do cliente: ")
@@ -29,23 +43,33 @@ def exibir_cliente_parcial(cpf):
 def exibir_cliente_completo(cpf):
 
       print(f"""
-            Nome: {clientes[cpf]["nome"]} 
-            Idade: {clientes[cpf]["idade"]}
-            Total Compras: R${sum(clientes[cpf]["compras"]):.2f}
-            Categoria: {clientes[cpf]["categoria"]}""")
+Nome: {clientes[cpf]["nome"]} 
+Idade: {clientes[cpf]["idade"]}
+Total Compras: R${sum(clientes[cpf]["compras"]):.2f}
+Categoria: {clientes[cpf]["categoria"]}""")
 
 def buscar_cliente():
-    cpf = input("\nDigite o CPF do cliente a ser encontrado: ")
 
-    if cpf in clientes:      
+      print("\n===== BUSCAR CLIENTE =====\n")
 
-      exibir_cliente_completo(cpf)
-        
-    else:
-        print("CPF não cadastrado!")
+      while True:
+    
+            cpf = input("\nDigite o CPF do cliente a ser encontrado (0 para voltar): ")
+
+            if cpf in clientes:      
+
+                  exibir_cliente_completo(cpf)
+
+            if cpf == '0':
+                  break
+                  
+            else:
+                  print("CPF não cadastrado!")
 
 
 def atualizar_cliente():
+
+      print("\n===== ATUALIZAR CLIENTE =====\n")
 
       while True:
 
@@ -81,6 +105,8 @@ def atualizar_cliente():
       
 def excluir_cliente() :
 
+      print("\n===== EXCLUIR CLIENTE =====\n")
+
       while True:
 
             cpf = input("\nDigite o CPF do cliente a ser deletado (0 para voltar): ")
@@ -98,6 +124,8 @@ def excluir_cliente() :
       
 def calcular_faturamento_cliente():
 
+      print("\n===== FATURAMENTO DE CLIENTE =====\n")
+
       while True:
 
             cpf = input("\nDigite o CPF do cliente a calcular o faturamento (0 para voltar): ")
@@ -112,6 +140,8 @@ def calcular_faturamento_cliente():
                   print("\nCPF não cadastrado!")          
       
 def fazer_compra():
+
+      print("\n===== EFETUAR COMPRA DO CLIENTE =====\n")
 
       while True:
 
