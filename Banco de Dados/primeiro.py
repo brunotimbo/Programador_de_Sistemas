@@ -27,3 +27,18 @@ VALUES ('Ana', 21, 'Engenharia'),
 
 #confirma a transação
 conexao.commit()
+
+# Inserir dados na tabela
+
+def inserir_dados(nome, idade, curso):
+    
+        cursor.execute('''INSERT INTO Alunos (Nome, Idade, Curso)
+        VALUES (?, ?, ?)''', (nome, idade, curso))
+
+        # Confirmar a transação
+        conexao.commit()
+
+nome = input("Qual seu nome: ")
+idade = int(input("Qual sua idade: "))
+curso = input("Qual seu curso: ")
+inserir_dados(nome, idade, curso)
