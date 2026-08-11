@@ -93,7 +93,7 @@ def buscar_admin_banco(usuario, senha):
 
     conexao = bd.connect("sistema.db")
     cursor = conexao.cursor()
-    cursor.execute("SELECT * FROM ADMIN WHERE usuario = ? AND senha = ?", ("usuario","senha"))
+    cursor.execute("SELECT * FROM ADMIN WHERE usuario = ? AND senha = ?", (usuario,senha))
     resultado = cursor.fetchone()
     conexao.close()
     print(resultado)
@@ -104,7 +104,7 @@ def usuario_existe(usuario):
     conexao = bd.connect("sistema.db")
     cursor = conexao.cursor()
     cursor.execute("SELECT * FROM ADMIN WHERE usuario = ?", (usuario,))
-    resultado = cursor.fetchone
+    resultado = cursor.fetchone()
     conexao.close()
     return resultado is not None
 
@@ -340,14 +340,14 @@ def tela_login():
 
     # frame da janela de login
     frame_login = tk.Frame(janela)
-    frame_login.pack(fill="both", expand=True)
+    frame_login.pack(fill="both", expand=True, ) 
 
     # título da tela de login
     label_titulo = tk.Label(frame_login, text="Sistema de Login", font=("Arial", 16))
     label_titulo.pack(pady=10)
 
     # texto do campo usuario
-    label_usuario = tk.Label(frame_login, text="Usuário:")
+    label_usuario = tk.Label(frame_login, text="Usuário:", anchor="w",  width=17)
     label_usuario.pack(pady=5)
 
     # campo usuário
